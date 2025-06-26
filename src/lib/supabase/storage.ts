@@ -1,5 +1,6 @@
-import { supabase } from './config'
+import { createClient } from './client'
 
+const supabase = createClient()
 const STORAGE_BUCKET = 'generated-images'
 
 export async function uploadImage(userId: string, imageFile: File) {

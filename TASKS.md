@@ -25,9 +25,9 @@
   - [x] Document required environment variables
   - [ ] Set up environment validation
 - [ ] Create GitHub repository
-  - [ ] Initialize repository
-  - [ ] Set up .gitignore
-  - [ ] Create initial README.md
+  - [x] Initialize repository
+  - [x] Set up .gitignore
+  - [x] Create initial README.md
   - [ ] Set up branch protection rules
 
 ## 🔐 Authentication (Supabase)
@@ -39,6 +39,7 @@
 
 ## 💾 Database & Storage
 - [ ] Create Supabase `generations` table with RLS
+- [ ] Create Supabase `prompts` table with RLS
 - [ ] Set up Supabase Storage bucket with proper policies
 - [ ] Create database utility functions
 - [ ] Implement image upload/deletion functions
@@ -58,12 +59,14 @@
 - [ ] Add image deletion functionality
 - [x] Implement loading states
 - [x] Add error handling UI components
+- [ ] Upgrade Dashboard UI/UX (see DatabaseTasks.md)
 
 ## 🤖 AI Integration
 - [ ] Set up OpenAI client
 - [ ] Create image generation API endpoint
 - [ ] Implement rate limiting (3 generations)
 - [ ] Add error handling for API calls
+- [ ] Fix content moderation issues with OpenAI API
 - [ ] Optimize image processing
 
 ## 🔧 Backend Features
