@@ -3,9 +3,66 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/auth/auth-context'
-import { AuthForm } from '@/components/auth/auth-form'
-import Image from 'next/image'
 import { Icons } from '@/components/ui/icons'
+import { Carousel } from '@/components/ui/carousel'
+import { CardsParallax, iCardItem } from '@/components/ui/scroll-cards'
+
+const inspoItems: iCardItem[] = [
+  {
+    title: "A new masterpiece",
+    description: "Personalized pet art to make you smile",
+    tag: "art",
+    src: "/inspo1.png",
+    link: "#",
+    color: "white",
+    textColor: "black",
+  },
+  {
+    title: "Timeless memories",
+    description: "Capture your pet's personality forever",
+    src: "/inspo2.png",
+    tag: "classic",
+    link: "#",
+    color: "white",
+    textColor: "black",
+  },
+  {
+    title: "AI-powered creativity",
+    description: "Re-imagine your furry friend with a touch of magic",
+    src: "/inspo3.png",
+    tag: "ai",
+    link: "#",
+    color: "white",
+    textColor: "black",
+  },
+  {
+    title: "The perfect gift",
+    description: "A unique present for any pet lover",
+    src: "/inspo4.png",
+    tag: "gift",
+    link: "#",
+    color: "white",
+    textColor: "black",
+  },
+  {
+    title: "Stunning portraits",
+    description: "Transform your favorite photos into works of art",
+    src: "/inspo5.png",
+    tag: "portrait",
+    link: "#",
+    color: "white",
+    textColor: "black",
+  },
+  {
+    title: "For the love of pets",
+    description: "Celebrate your companion with Haikoo",
+    src: "/inspo6.png",
+    tag: "love",
+    link: "#",
+    color: "white",
+    textColor: "black",
+  },
+];
 
 export default function Home() {
   const { user, loading } = useAuth()
@@ -25,47 +82,43 @@ export default function Home() {
     )
   }
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-gradient-to-b from-white to-gray-50">
-      <div className="w-full max-w-5xl mx-auto space-y-8">
-        <div className="flex flex-col items-center justify-center space-y-4">
-          <div className="w-24 h-24 flex items-center justify-center">
-            <Image
-              src="/next.svg"
-              alt="Haikoo Logo"
-              width={96}
-              height={96}
-              className="object-contain"
-              priority
-            />
-          </div>
-          <h1 className="text-4xl font-bold text-center text-gray-900">
-            Welcome to Haikoo
-          </h1>
-          <p className="text-xl text-center text-gray-600 max-w-2xl">
-            Transform your pet photos into beautiful AI-generated portraits
-          </p>
-        </div>
-        
-        <div className="w-full max-w-md mx-auto">
-          <AuthForm />
-        </div>
+  const slideData = [
+    {
+      title: "Your pet re-imagined with Gen-AI",
+      button: "Get Started",
+      src: "/hero1.png",
+    },
+    {
+      title: "A new master-piece every day",
+      button: "Get Started",
+      src: "/hero2.png",
+    },
+    {
+      title: "Waiting to make you smile",
+      button: "Get Started",
+      src: "/hero3.png",
+    },
+    {
+      title: "Haikoo - personalized pet art",
+      button: "Get Started",
+      src: "/hero4.png",
+    },
+  ];
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <div className="p-6 bg-white rounded-lg shadow-sm">
-            <h3 className="text-lg font-semibold mb-2">Easy to Use</h3>
-            <p className="text-gray-600">Upload your pet's photo and get an AI-generated portrait in minutes</p>
-          </div>
-          <div className="p-6 bg-white rounded-lg shadow-sm">
-            <h3 className="text-lg font-semibold mb-2">Beautiful Results</h3>
-            <p className="text-gray-600">Get stunning, unique portraits that capture your pet's personality</p>
-          </div>
-          <div className="p-6 bg-white rounded-lg shadow-sm">
-            <h3 className="text-lg font-semibold mb-2">Multiple Styles</h3>
-            <p className="text-gray-600">Choose from various artistic styles to create the perfect portrait</p>
-          </div>
+  return (
+    <main className="bg-white">
+      {/* Hero Section */}
+      <section className="min-h-screen flex flex-col justify-center items-center pt-16">
+        <Carousel slides={slideData} onLoginClick={() => {}}/>
+      </section>
+
+      {/* Inspo Gallery Section */}
+      <section id="inspiration">
+        <div className="w-full max-w-6xl mx-auto py-12 px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Get Inspired</h2>
+          <CardsParallax items={inspoItems} />
         </div>
-      </div>
+      </section>
     </main>
   )
 }

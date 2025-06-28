@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useAuth } from '@/lib/auth/auth-context'
 import { createClient } from '@/lib/supabase/client'
 import { GenerationsGallery } from './_components/generations-gallery'
-import { InspoGallery } from './_components/inspo-gallery'
+import { ImageGrid } from './_components/image-grid'
 import { Icons } from '@/components/ui/icons'
 import { Button } from '@/components/ui/button'
 
@@ -14,16 +14,19 @@ type Generation = {
   output_image_url: string | null
 }
 
-type InspoImage = {
-  id: number
-  image_url: string
-}
+const inspoImages = [
+  { src: "/inspo1.png", alt: "Inspiration 1" },
+  { src: "/inspo2.png", alt: "Inspiration 2" },
+  { src: "/inspo3.png", alt: "Inspiration 3" },
+  { src: "/inspo4.png", alt: "Inspiration 4" },
+  { src: "/inspo5.png", alt: "Inspiration 5" },
+  { src: "/inspo6.png", alt: "Inspiration 6" },
+];
 
 export default function DashboardHubPage() {
   const { user } = useAuth()
   const supabase = createClient()
   const [generations, setGenerations] = useState<Generation[]>([])
-  const [inspoImages, setInspoImages] = useState<InspoImage[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -32,26 +35,15 @@ export default function DashboardHubPage() {
 
       setLoading(true)
 
-      const [generationsResult, inspoResult] = await Promise.all([
-        supabase
+      const generationsResult = await supabase
           .from('generations')
           .select('id, output_image_url')
           .eq('user_id', user.id)
           .order('created_at', { ascending: false })
-          .limit(6),
-        supabase
-          .from('inspo_images')
-          .select('id, image_url')
-          .order('created_at', { ascending: false })
-          .limit(6),
-      ])
+          .limit(6)
 
       if (generationsResult.data) {
         setGenerations(generationsResult.data)
-      }
-
-      if (inspoResult.data) {
-        setInspoImages(inspoResult.data)
       }
 
       setLoading(false)
@@ -61,7 +53,7 @@ export default function DashboardHubPage() {
   }, [user, supabase])
 
   return (
-    <div className="container py-8">
+    <div className="container px-4 md:px-6 lg:px-8 py-8">
       {loading ? (
         <div className="flex justify-center p-12">
           <Icons.spinner className="h-10 w-10 animate-spin" />
@@ -100,21 +92,15 @@ export default function DashboardHubPage() {
 
           {/* Inspiration Gallery Section */}
           <section id="inspiration">
-            <div className="text-center mb-8">
+            <div className="mb-8">
               <h2 className="text-3xl font-bold tracking-tight">
                 Inspiration Gallery
               </h2>
               <p className="mt-2 text-lg text-muted-foreground">
-                See what's possible and get ideas for your next creation.
+                See what&apos;s possible and get ideas for your next creation.
               </p>
             </div>
-            {inspoImages.length > 0 ? (
-              <InspoGallery images={inspoImages} />
-            ) : (
-              <p className="text-center text-muted-foreground">
-                The inspiration gallery is currently empty.
-              </p>
-            )}
+            <ImageGrid images={inspoImages} />
           </section>
         </div>
       )}

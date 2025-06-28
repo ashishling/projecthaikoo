@@ -28,13 +28,13 @@
 
 ## 3. Inspo Gallery
 - [ ] **Backend Setup:**
-  - [ ] Create a new table in Supabase for `inspo_images` (id, image_url, description, tags, etc.).
-  - [ ] Set up RLS policies for the `inspo_images` table (public read-only access).
-  - [ ] Set up a new Supabase Storage bucket for inspiration images.
-  - [ ] Manually upload initial set of inspiration images to storage and populate the table.
+  - [x] Create a new table in Supabase for `inspo_images` (id, image_url, description, tags, etc.).
+  - [x] Set up RLS policies for the `inspo_images` table (public read-only access).
+  - [x] Set up a new Supabase Storage bucket for inspiration images.
+  - [x] Manually upload initial set of inspiration images to storage and populate the table.
 - [ ] **Frontend Implementation:**
-  - [ ] Create a new component for the Inspo Gallery.
-  - [ ] Fetch and display images from the `inspo_images` table.
-  - [ ] Integrate the Inspo Gallery into the dashboard.
+  - [x] Create a new component for the Inspo Gallery.
+  - [x] Fetch and display images from the `inspo_images` table.
+  - [] Integrate the Inspo Gallery into the dashboard.
 - [ ] **Landing Page Integration:**
   - [ ] Reuse the Inspo Gallery component on the main landing page to showcase sample outputs. 

@@ -6,7 +6,7 @@ const STORAGE_BUCKET = 'generated-images'
 export async function uploadImage(userId: string, imageFile: File) {
   const filePath = `${userId}/${Date.now()}-${imageFile.name}`
   
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from(STORAGE_BUCKET)
     .upload(filePath, imageFile)
     

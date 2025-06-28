@@ -38,10 +38,10 @@
 - [x] Implement logout functionality
 
 ## 💾 Database & Storage
-- [ ] Create Supabase `generations` table with RLS
-- [ ] Create Supabase `prompts` table with RLS
-- [ ] Set up Supabase Storage bucket with proper policies
-- [ ] Create database utility functions
+- [x] Create Supabase `generations` table with RLS
+- [x ] Create Supabase `prompts` table with RLS
+- [x ] Set up Supabase Storage bucket with proper policies
+- [x ] Create database utility functions
 - [ ] Implement image upload/deletion functions
 - [ ] Set up 30-day retention policy
 
@@ -59,12 +59,12 @@
 - [ ] Add image deletion functionality
 - [x] Implement loading states
 - [x] Add error handling UI components
-- [ ] Upgrade Dashboard UI/UX (see DatabaseTasks.md)
+- [x ] Upgrade Dashboard UI/UX (see DatabaseTasks.md)
 
 ## 🤖 AI Integration
-- [ ] Set up OpenAI client
-- [ ] Create image generation API endpoint
-- [ ] Implement rate limiting (3 generations)
+- [x ] Set up OpenAI client
+- [x ] Create image generation API endpoint
+- [x ] Implement rate limiting (3 generations)
 - [ ] Add error handling for API calls
 - [ ] Fix content moderation issues with OpenAI API
 - [ ] Optimize image processing

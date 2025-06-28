@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Icons } from '@/components/ui/icons'
 
-export function AuthForm() {
+export function AuthForm({ onAuthSuccess }: { onAuthSuccess?: () => void }) {
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -27,13 +27,19 @@ export function AuthForm() {
       if (isSignUp) {
         await signUp(email, password)
         setMessage('Check your email for a confirmation link.')
+        if (onAuthSuccess) onAuthSuccess()
       } else {
         await signIn(email, password)
+        if (onAuthSuccess) onAuthSuccess()
       }
-    } catch (error: any) {
-      setError(error.message || 'An unexpected error occurred.')
-      if (error.message === 'Email not confirmed') {
-        setError('Email not confirmed. Please check your inbox for a verification link.')
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message || 'An unexpected error occurred.')
+        if (error.message === 'Email not confirmed') {
+          setError('Email not confirmed. Please check your inbox for a verification link.')
+        }
+      } else {
+        setError('An unexpected error occurred.')
       }
     } finally {
       setIsLoading(false)
